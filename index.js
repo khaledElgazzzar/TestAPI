@@ -33,6 +33,7 @@ async function fetchInitialMicrophoneStatus() {
     }
 }
 
+
 // Function to make API request and toggle the microphone status
 async function makeApiRequest() {
     try {
