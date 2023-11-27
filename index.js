@@ -15,10 +15,19 @@ function setButtonColor(status) {
 // Function to fetch the initial microphone status from the API on page load
 async function fetchInitialMicrophoneStatus() {
     try {
-        const response = await fetch(apiUrl, { mode: 'no-cors' });
-        const data = await response.text();
-        microphoneStatus = data === 'true';
-        setButtonColor(microphoneStatus);
+        const response = await fetch(apiUrl, { method: 'GET' }); // Use GET method
+        if (response.status === 200) {
+            const data = await response.json();
+            if (data.message === 'gegzo') {
+                microphoneStatus = true;
+                setButtonColor(microphoneStatus);
+            } else {
+                microphoneStatus = false;
+                setButtonColor(microphoneStatus);
+            }
+        } else {
+            console.error('Error:', response.status);
+        }
     } catch (error) {
         console.error('Error:', error);
     }
